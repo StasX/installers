@@ -56,8 +56,8 @@ spotbugs {
     showStackTraces = true
     showProgress = true
 
-    effort = Effort.MAX
-    reportLevel = Confidence.LOW
+    effort = Effort.valueOf('MAX')
+    reportLevel = Confidence.valueOf('LOW')
 
     excludeFilter = file('config/spotbugs/exclude.xml')
 }
