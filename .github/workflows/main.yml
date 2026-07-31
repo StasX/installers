@@ -11,6 +11,9 @@ on:
       - "config/spotbugs/**"
       - "build.gradle"
       - "settings.gradle"
+      - "gradle/**"
+      - "gradlew"
+      - "gradlew.bat"
       - ".github/workflows/main.yml"
 
   pull_request:
@@ -21,6 +24,9 @@ on:
       - "config/spotbugs/**"
       - "build.gradle"
       - "settings.gradle"
+      - "gradle/**"
+      - "gradlew"
+      - "gradlew.bat"
       - ".github/workflows/main.yml"
 
   workflow_dispatch:
@@ -45,14 +51,12 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
-        with:
-          gradle-version: "9.1.0"
 
-      - name: Run CodeNarc
-        run: gradle codenarcMain --no-daemon
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
 
-      - name: Run SpotBugs
-        run: gradle spotbugsMain --no-daemon
+      - name: Run CodeNarc and SpotBugs
+        run: ./gradlew codenarcMain spotbugsMain --continue --no-daemon
 
       - name: Upload CodeNarc report
         if: always()
