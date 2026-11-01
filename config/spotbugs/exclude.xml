@@ -7,7 +7,7 @@
     </Match>
     <!-- Groovy dynamically dispatches calls from both Python installers. -->
     <Match>
-        <Class name="InstallersForPythonBasedTools"/>
+        <Class name="installersForPythonBasedTools"/>
         <Method name="configureVirtualEnvironment" params="" returns="void"/>
         <Bug pattern="UPM_UNCALLED_PRIVATE_METHOD"/>
     </Match>

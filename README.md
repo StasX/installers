@@ -1,6 +1,12 @@
 # installers
 Jenkins Shared Library for Package Installation
 
+Use the camelCase global names `installersForPythonBasedTools`,
+`installersForDockerBasedTools`, and `installersForPHPBasedTools` in your
+Jenkinsfile. These replace the previous uppercase names; update all calls
+and remove any imports of the old names. Jenkins shared-library globals
+must start with a lowercase letter.
+
 The Checkov and Semgrep installers create `.venv` in the current Jenkins
 directory and update the Pipeline's `PATH` and `VIRTUAL_ENV`. Later `sh` steps
 on the same agent can run `checkov` and `semgrep` directly without activating
@@ -8,7 +14,7 @@ the environment again. Run these installers inside a Jenkins `node` context.
 
 ## PHP installers
 
-Call `InstallersForPHPBasedTools` methods inside a Jenkins `node` context,
+Call `installersForPHPBasedTools` methods inside a Jenkins `node` context,
 from the consuming project's root directory. The agent needs a Unix shell,
 PHP and Composer on `PATH`, and the PHP version and extensions required by
 the selected packages. The project must supply its own `composer.json`,
@@ -49,9 +55,9 @@ dependencies and creates a lock file.
 
 node {
     checkout scm
-    InstallersForPHPBasedTools.installAll(false, true)
-    InstallersForPHPBasedTools.installPHPStan(true)
-    InstallersForPHPBasedTools.installPHPUnit()
+    installersForPHPBasedTools.installAll(false, true)
+    installersForPHPBasedTools.installPHPStan(true)
+    installersForPHPBasedTools.installPHPUnit()
 }
 ```
 
