@@ -5,4 +5,10 @@
         <Field name="__$stMC"/>
         <Bug pattern="MS_SHOULD_BE_FINAL"/>
     </Match>
+    <!-- Groovy dynamically dispatches calls from both Python installers. -->
+    <Match>
+        <Class name="InstallersForPythonBasedTools"/>
+        <Method name="configureVirtualEnvironment" params="" returns="void"/>
+        <Bug pattern="UPM_UNCALLED_PRIVATE_METHOD"/>
+    </Match>
 </FindBugsFilter>
