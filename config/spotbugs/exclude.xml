@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <FindBugsFilter>
+    <!-- Jenkins vars scripts use camelCase global names; Groovy generates
+         classes with the same names. Keep this exception scoped to those globals. -->
+    <Match>
+        <Or>
+            <Class name="installersForDockerBasedTools"/>
+            <Class name="installersForPHPBasedTools"/>
+            <Class name="installersForPythonBasedTools"/>
+        </Or>
+        <Bug pattern="NM_CLASS_NAMING_CONVENTION"/>
+    </Match>
     <Match>
         <Field name="__$stMC"/>
         <Bug pattern="MS_SHOULD_BE_FINAL"/>
